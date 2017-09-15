@@ -1,12 +1,11 @@
 <Query Kind="Expression">
   <Connection>
-    <ID>bc7ed8d9-a24a-41d6-a741-4715e0bf2a66</ID>
+    <ID>02bb616b-a52c-4980-b61b-57bf90296a39</ID>
     <Persist>true</Persist>
     <Server>.</Server>
     <Database>NorthwindExtended</Database>
   </Connection>
 </Query>
-
 
 //Mine
 /*
@@ -28,13 +27,14 @@ select new
 {
 	Company = row.Customer.CompanyName,
 	Contact = row.Customer.ContactName,
-	Item = from item in row.OrderDetails
-		select new
-	{
-		ProductName = item.Product.ProductName,
-		item.UnitPrice,
-		item.Quantity,
-		item.Discount
-		Total = item.UnitPrice * item.Quantity //todo: apply a discount
-	}
+	OrderTotal = (from item in row.OrderDetails select item.UnitPrice * item.Quantity).Sum()//,
+//	Item = from item in row.OrderDetails
+//		select new
+//	{
+//		ProductName = item.Product.ProductName,
+//		item.UnitPrice,
+//		item.Quantity,
+//		item.Discount,
+//		Total = item.UnitPrice * item.Quantity //todo: apply a discount
+//	}
 }
